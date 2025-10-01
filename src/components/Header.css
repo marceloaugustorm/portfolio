@@ -1,0 +1,21 @@
+header {
+  background-color: #ff69b4; /* rosa vibrante */
+}
+
+header .nav-link {
+  color: #ffffff; 
+}
+
+header .nav-link.active {
+  background-color: #ff1493; 
+}
+
+
+.nav-link:hover,
+.nav-link:focus {
+  background-color: #ffffff; /* cor de fundo ao passar o mouse */
+  color: #ff1493; /* cor do texto ao passar o mouse */
+}
+
+
+
