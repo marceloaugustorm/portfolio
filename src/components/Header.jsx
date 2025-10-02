@@ -11,10 +11,11 @@ export const Header = () => {
           </li>
           <li className="nav-item">
             
-            <a href="#experiencia" className="nav-link">Experiência</a>
+            
+            <Link to="/experiencia"  className="nav-link">Experiência</Link>
           </li>
           <li className="nav-item">
-            <a href="#sobre" className="nav-link">Sobre Mim</a>
+            <Link className="nav-link" to="/sobre">Sobre Mim</Link>
           </li>
           <li className="nav-item">
             <Link to="/contato" className="nav-link"> Contato </Link>

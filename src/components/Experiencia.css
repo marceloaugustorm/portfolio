@@ -1,0 +1,147 @@
+.wrapperexp {
+    position: relative;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+
+
+.conteudo-experiencia {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.experiencia-item {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.lado-esquerdo {
+    flex: 1;
+    
+}
+
+.lado-direito {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+}
+
+.imagem-experiencia {
+    width: 100%;
+    max-width: 500px;
+    height: auto; 
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    object-fit: cover; 
+}
+
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    height: 380px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.background ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.background li {
+    margin-bottom: 15px;
+}
+
+.background h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+}
+
+.background h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+.background p {
+    font-size: 0.9rem;
+    color: #333;
+    text-align: justify;
+    padding-right: 10px;
+}
+
+.background ul ul ul {
+    list-style: disc;
+    margin-top: 10px;
+}
+
+.imagens-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* RESPONSIVO */
+@media (max-width: 992px) {
+    .linha-central {
+        transform: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .experiencia-item {
+        flex-direction: column; /* empilha texto e imagem */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lado-direito {
+        margin-top: 20px; /* espaçamento entre texto e imagem */
+    }
+
+    .background, .imagem-experiencia {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .wrapperexp {
+        padding: 20px 10px;
+    }
+
+    .background h4 {
+        font-size: 1.2rem;
+    }
+
+    .background h5 {
+        font-size: 1rem;
+    }
+
+    .background p {
+        font-size: 0.85rem;
+    }
+
+    .imagens-container {
+        gap: 20px;
+    }
+}
