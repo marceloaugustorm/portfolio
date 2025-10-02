@@ -15,7 +15,8 @@
 }
 
 .contatos{
-    font-size: 20px;
+    font-size: 20px;    
+    
 }
 
 
@@ -29,4 +30,19 @@
     border-radius: 10px;
     box-shadow: 5px;
 }
+
+.botao-instagram-contato{
+  color: black!important;
+  transition: color 0.3s ease; 
+  cursor: pointer;  
+  border-radius: 10px;
+  padding-left: 25px;
+  padding-right: 25px;            
+}
+
+ .botao-instagram-contato:hover {
+  color: #FF69B4 !important;
+  background-color: white;
+}
+
 

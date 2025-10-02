@@ -9,9 +9,24 @@ export const Contato = () =>{
     
     
    <div className="contatos">
-    <h1>Como entrar em contato</h1>
-      <p><i className="bi bi-envelope"></i> Email: Livia@gmail.com</p>
-      <p><i className="bi bi-telephone"></i> Telefone: (11)00000-0000</p>
+    <h1 className="display-5 fw-bold text-body-emphasis lh-1 mb-3">Como entrar  em contato</h1>
+      <p className="lead"><i className="bi bi-envelope"></i> Email: Livia@gmail.com</p>
+      <p className="lead"><i className="bi bi-telephone"></i> Telefone: (11)00000-0000</p>
+
+      <a href="#">
+      <i 
+    className="bi bi-instagram botao-instagram-contato"
+    style={{ fontSize: "40px"}}
+  ></i>
+  </a>
+
+    <a href="#">
+      <i 
+    className="bi bi-whatsapp botao-instagram-contato"
+    style={{ fontSize: "40px"}}
+  ></i>
+  </a>
+
     </div>
 
 
