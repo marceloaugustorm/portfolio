@@ -11,6 +11,7 @@ import { Areas } from './components/Areas';
 import { Contato } from './components/Contato'
 import { Experiencia } from './components/Experiencia';
 import { Sobre } from './components/Sobre';
+import { Caso } from './components/Caso';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/contato" element={<Contato/>} />
           <Route path="/experiencia" element={<Experiencia/>}/>
           <Route path="/sobre" element={<Sobre/>}/>
+          <Route path="/caso" element={<Caso/>} />
           
         </Routes>
         <Footer />

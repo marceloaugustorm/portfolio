@@ -21,7 +21,7 @@ export const Header = () => {
             <Link to="/contato" className="nav-link"> Contato </Link>
           </li>
             <li className="nav-item">
-            <a href="#contato" className="nav-link ">Adicionar caso</a>
+           <Link  to="/caso"className="nav-link"> Adicionar Caso</Link>
           </li>
         </ul>
       </header>
