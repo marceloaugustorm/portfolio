@@ -21,7 +21,7 @@ export const Footer = () => {
 
           <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
             <li className="ms-3">
-                <a href="">
+                <a href="https://www.instagram.com/_livitt?utm_source=ig_web_button_share_sheet&igsh=ZzVnc2Vxd3FtOHl5">
               <i className="bi bi-instagram" style={{ fontSize: "1.5rem", color: "black" }}></i>
               </a>
             </li>

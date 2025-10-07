@@ -1,0 +1,132 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+input {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: solid 1px black;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    justify-content: center;
+}
+
+button {
+    background-color: #FF69B4;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff4da6;
+}
+
+/* Cadastrar casos */
+.wrappercase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.case {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    width: 400px;
+    gap: 20px;
+}
+
+/* Grid de casos */
+.casos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+/* Card de cada caso */
+.caso-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.caso-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Foto do animal */
+.caso-foto {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 3px solid #FF69B4;
+}
+
+/* Informações do caso */
+.caso-info {
+    padding: 20px;
+    text-align: left;
+}
+
+.caso-info h3 {
+    color: #FF69B4;
+    margin: 0 0 15px 0;
+    font-size: 1.5rem;
+}
+
+.caso-info p {
+    margin: 8px 0;
+    color: #333;
+    line-height: 1.5;
+}
+
+.caso-info strong {
+    color: #555;
+}
+
+.caso-descricao {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+    font-style: italic;
+    color: #666;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .casos-grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+    
+    .case {
+        width: 100%;
+        max-width: 400px;
+    }
+}

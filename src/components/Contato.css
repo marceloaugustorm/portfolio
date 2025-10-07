@@ -84,3 +84,15 @@
 
 
 
+@media (max-width: 768px) {
+
+    .wrapper{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+}
+
+
+

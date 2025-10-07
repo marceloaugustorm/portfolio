@@ -1,6 +1,7 @@
 import "./Contato.css";
 import Cat from "../assets/catcar.jpg"
 
+
 export const Contato = () =>{
     return(
         <div>
@@ -18,14 +19,14 @@ export const Contato = () =>{
       </div>
 
       <div className="links">
-      <a href="#">
+      <a href="https://www.instagram.com/_livitt?utm_source=ig_web_button_share_sheet&igsh=ZzVnc2Vxd3FtOHl5">
       <i 
     className="bi bi-instagram botao-instagram-contato"
     style={{ fontSize: "40px"}}
   ></i>
   </a>
 
-    <a href="#">
+    <a href="https://wa.me/5511992164519?text=Olá%20tudo%20bem?%20Vim%20pelo%20site!">
       <i 
     className="bi bi-whatsapp botao-instagram-contato"
     style={{ fontSize: "40px"}}

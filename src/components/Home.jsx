@@ -1,5 +1,7 @@
 import "./Header.css"
 import {Areas} from "./Areas"
+import Picture from "../assets/imagem4.jpg"
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
@@ -7,10 +9,11 @@ export const Home = () => {
       <div className="row flex-lg-row-reverse align-items-center g-5">
         <div className="col-10 col-sm-8 col-lg-6">
           <img
-            src="https://images.unsplash.com/photo-1530041539828-114de669390e?w=800&h=600&fit=crop"
+            src={Picture}
             className="d-block mx-lg-auto img-fluid rounded shadow"
             alt="Veterinária"
             loading="lazy"
+            style={{height: "550px"}}
           />
         </div>
 
@@ -26,12 +29,14 @@ export const Home = () => {
           </p>
 
           <div className="d-grid gap-2 d-md-flex justify-content-md-start">
-            <button
+            <Link
+            to="/experiencia"
+        
               type="button"
               className="btn btn-dark btn-lg px-4 me-md-2"
             >
               Ver Experiência
-            </button>
+            </Link>
             <button
               type="button"
               className="btn btn-outline-secondary btn-lg px-4"

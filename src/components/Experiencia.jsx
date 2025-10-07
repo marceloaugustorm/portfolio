@@ -8,17 +8,6 @@ import WeVets from "../assets/wevets.webp"
 export const Experiencia = () => {
   const experiencias = [
     {
-      titulo: "Ri Dog Clínica Veterinária 24hs",
-      endereco: "R. Salvador Rodrigues Negrão, 113",
-      periodo: "22/03/2023",
-      atividades: [
-        "Acompanhamento do atendimento clínico e emergencial de animais de pequeno porte.",
-        "Auxílio em procedimentos básicos, como aplicação de medicamentos orais e tópicos sob supervisão.",
-        "Apoio na contenção segura de animais durante consultas e exames.",
-      ],
-      imagem: Hidog,
-    },
-    {
       titulo: "Mahalo Experiência / Outro Estágio",
       endereco: "R. Ipurinãs, 294 - Brooklin, São Paulo - SP",
       periodo: "10/08/2022",
