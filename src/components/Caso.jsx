@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Caso.css"
 
+const API_URL = "https://back-end-portfolio-frwh.onrender.com"; // ✅ Backend hospedado
+
 export const Caso = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -22,7 +24,7 @@ export const Caso = () => {
   const submitLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://127.0.0.1:5000/login", {
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, senha }),
@@ -43,7 +45,7 @@ export const Caso = () => {
   // ---------- GET CASOS ----------
   const getdata = async () => {
     try {
-      const resposta = await fetch("http://127.0.0.1:5000/caso");
+      const resposta = await fetch(`${API_URL}/caso`);
       const datacase = await resposta.json();
       setCasos(datacase);
     } catch (error) {
@@ -65,7 +67,7 @@ export const Caso = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://127.0.0.1:5000/caso", {
+      const response = await fetch(`${API_URL}/caso`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
@@ -86,7 +88,7 @@ export const Caso = () => {
   const deleteCaso = async (id) => {
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch(`http://127.0.0.1:5000/caso/${id}`, {
+      const response = await fetch(`${API_URL}/caso/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -123,7 +125,7 @@ export const Caso = () => {
 
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch(`http://127.0.0.1:5000/caso/${id}`, {
+      const response = await fetch(`${API_URL}/caso/${id}`, {
         method: "PUT",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
@@ -133,7 +135,6 @@ export const Caso = () => {
         getdata();
         setCasos(prev => prev.map(c => c.id === id ? data : c));
         setEditModalOpen(false);
-        
       } else {
         console.error("Erro ao atualizar:", data);
       }
@@ -177,7 +178,7 @@ export const Caso = () => {
           const primeiraFoto = Array.isArray(caso.foto) ? caso.foto[0] : caso.foto;
           return (
             <div key={caso.id} className="caso-card">
-              {primeiraFoto && <img src={`http://127.0.0.1:5000/uploads/${primeiraFoto}`} alt={caso.nome} className="caso-foto" />}
+              {primeiraFoto && <img src={`${API_URL}/uploads/${primeiraFoto}`} alt={caso.nome} className="caso-foto" />}
               <div className="caso-info">
                 <h3>{caso.nome}</h3>
                 <p><strong>Raça:</strong> {caso.raca}</p>
