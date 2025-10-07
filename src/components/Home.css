@@ -19,8 +19,8 @@
 
   .home-picture {
     height: auto;
-    width: 100%;
-    max-width: 400px; /* opcional: limita no mobile */
+    width: 300px;
+    max-width: 400px; 
   }
 
   .d-grid.gap-2.d-md-flex {
