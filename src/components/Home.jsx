@@ -13,7 +13,7 @@ export const Home = () => {
             className="home-picture d-block mx-lg-auto img-fluid rounded shadow"
             alt="Veterinária"
             loading="lazy"
-            style={{height: "550px"}}
+            style={{ width: "100%", maxWidth: "550px", height: "auto" }}
           />
         </div>
 

@@ -7,6 +7,12 @@
 }
 
 @media (max-width: 768px) {
+  .home-picture {
+    width: 90%;        /* ocupa quase toda a largura do mobile */
+    max-width: 500px;  /* não fica gigante */
+    height: auto;      /* mantém proporção */
+  }
+
   .row.flex-lg-row-reverse {
     flex-direction: column !important;
     align-items: center;
@@ -15,12 +21,6 @@
 
   .col-lg-6 {
     margin-bottom: 20px;
-  }
-
-  .home-picture {
-    height: auto;
-    width: 300px;
-    max-width: 400px; 
   }
 
   .d-grid.gap-2.d-md-flex {
