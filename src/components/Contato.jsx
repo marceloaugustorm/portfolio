@@ -6,7 +6,7 @@ export const Contato = () =>{
     return(
         <div>
 
-          <div className="wrapper">
+          <div className="wrappercont">
     
     
    <div className="contatos">

@@ -1,21 +1,51 @@
-header {
+/* Header.css */
+
+.header {
   background-color: #ff69b4; /* rosa vibrante */
 }
 
-header .nav-link {
-  color: #ffffff; 
+.nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
-header .nav-link.active {
-  background-color: #ff1493; 
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
+.nav-link.active {
+  background-color: #ff1493;
+}
 
 .nav-link:hover,
 .nav-link:focus {
-  background-color: #ffffff; /* cor de fundo ao passar o mouse */
-  color: #ff1493; /* cor do texto ao passar o mouse */
+  background-color: #ffffff;
+  color: #ff1493;
 }
 
+/* Responsivo */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
 
+  .nav-link {
+    width: 100%;
+    text-align: center;
+  }
 
+  .container-header {
+    padding: 0 10px;
+  }
+}

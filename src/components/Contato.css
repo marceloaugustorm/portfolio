@@ -1,4 +1,4 @@
-.wrapper{
+.wrappercont{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -86,10 +86,11 @@
 
 @media (max-width: 768px) {
 
-    .wrapper{
+    .wrappercont{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 30px;
     }
     
 }

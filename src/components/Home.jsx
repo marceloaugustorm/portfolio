@@ -1,4 +1,4 @@
-import "./Header.css"
+import "./Home.css"
 import {Areas} from "./Areas"
 import Picture from "../assets/imagem4.jpg"
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ export const Home = () => {
         <div className="col-10 col-sm-8 col-lg-6">
           <img
             src={Picture}
-            className="d-block mx-lg-auto img-fluid rounded shadow"
+            className="home-picture d-block mx-lg-auto img-fluid rounded shadow"
             alt="Veterinária"
             loading="lazy"
             style={{height: "550px"}}
