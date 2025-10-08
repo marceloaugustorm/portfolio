@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import Toastify from "toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "./Caso.css";
 
-const API_URL = "https://back-end-portfolio-frwh.onrender.com";
+const API_URL = "http://127.0.0.1:5000";
 
 export const Caso = () => {
   const [email, setEmail] = useState("");
@@ -13,10 +17,9 @@ export const Caso = () => {
   const [raca, setRaca] = useState("");
   const [idade, setIdade] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [foto, setFoto] = useState(null);
-
-  const [casos, setCasos] = useState([]);
+  const [foto, setFoto] = useState(null); // apenas 1 foto
   const [resultCase, setResultCase] = useState(null);
+  const [casos, setCasos] = useState([]);
 
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [currentEditCaso, setCurrentEditCaso] = useState(null);
@@ -31,8 +34,9 @@ export const Caso = () => {
         body: JSON.stringify({ email, senha }),
       });
       const data = await response.json();
-      if (response.ok) {
+      if (response.ok) { 
         localStorage.setItem("token", data.access_token);
+        toast.success("Login Bem Sucedido"); 
         setResultado({ message: data.message });
         setAuthenticated(true);
       } else {
@@ -46,6 +50,7 @@ export const Caso = () => {
   // ---------- GET CASOS ----------
   const getdata = async () => {
     try {
+      
       const resposta = await fetch(`${API_URL}/caso`);
       const datacase = await resposta.json();
       setCasos(datacase);
@@ -57,6 +62,12 @@ export const Caso = () => {
   useEffect(() => {
     getdata();
   }, []);
+
+  // ---------- HANDLE FILE CHANGE ----------
+  const handleFileChange = (e) => {
+    setFoto(e.target.files[0]); // pega só 1 foto
+    console.log("Arquivo selecionado:", e.target.files[0]);
+  };
 
   // ---------- CREATE CASO ----------
   const submitCaso = async (e) => {
@@ -77,15 +88,20 @@ export const Caso = () => {
       });
       const data = await response.json();
       if (response.ok) {
+        toast.success("Caso criado com sucesso!");
         setResultCase(data);
         getdata();
-        // limpa campos
-        setNome(""); setRaca(""); setIdade(""); setDescricao(""); setFoto(null);
+        setNome("");
+        setRaca("");
+        setIdade("");
+        setDescricao("");
+        setFoto(null);
       } else {
         setResultCase({ mensagem: data.mensagem || "Erro ao criar caso" });
       }
     } catch (error) {
       console.log("Erro ao enviar caso:", error.message);
+      Toastify.error
     }
   };
 
@@ -95,10 +111,7 @@ export const Caso = () => {
     try {
       const response = await fetch(`${API_URL}/caso/${id}`, {
         method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
       });
       if (!response.ok) {
         const text = await response.text();
@@ -111,24 +124,24 @@ export const Caso = () => {
     }
   };
 
-  // ---------- OPEN EDIT ----------
+  // ---------- EDIT CASE ----------
   const openEditModal = (caso) => {
     setCurrentEditCaso(caso);
     setNome(caso.nome);
     setRaca(caso.raca);
     setIdade(caso.idade);
     setDescricao(caso.descricao);
+    setFoto(null);
     setEditModalOpen(true);
   };
 
-  // ---------- UPDATE CASO ----------
   const updateCaso = async (id) => {
     const formData = new FormData();
     formData.append("nome", nome);
     formData.append("raca", raca);
     formData.append("idade", idade);
     formData.append("descricao", descricao);
-    if (foto) formData.append("foto", foto); // se não enviar, mantém a foto antiga
+    if (foto) formData.append("foto", foto);
 
     const token = localStorage.getItem("token");
     try {
@@ -140,7 +153,6 @@ export const Caso = () => {
       const data = await response.json();
       if (response.ok) {
         getdata();
-        setCasos((prev) => prev.map((c) => (c.id === id ? data : c)));
         setEditModalOpen(false);
         setFoto(null);
       } else {
@@ -155,6 +167,7 @@ export const Caso = () => {
   if (!isAuthenticated) {
     return (
       <div className="wrapper">
+        <ToastContainer position="top-right" autoClose={3000} />
         {resultado && <p>{resultado.message}</p>}
         <form onSubmit={submitLogin}>
           <h1>Login</h1>
@@ -168,55 +181,46 @@ export const Caso = () => {
 
   return (
     <div className="wrappercase">
+      <ToastContainer position="top-right" autoClose={3000} />
       <h1>Cadastrar Caso</h1>
-
       {resultCase && <p>{resultCase.mensagem || "Caso criado com sucesso!"}</p>}
 
       <form className="case" onSubmit={submitCaso}>
-        <input type="text" placeholder="Nome do animal" value={nome} onChange={e => setNome(e.target.value)} required />
-        <input type="text" placeholder="Raça" value={raca} onChange={e => setRaca(e.target.value)} required />
-        <input type="text" placeholder="Idade" value={idade} onChange={e => setIdade(e.target.value)} required />
-        <textarea placeholder="Descrição do caso" value={descricao} onChange={e => setDescricao(e.target.value)} required />
-        <input type="file" accept="image/*" onChange={e => setFoto(e.target.files[0])} />
+        <input type="text" placeholder="Nome do animal" value={nome} onChange={(e) => setNome(e.target.value)} required />
+        <input type="text" placeholder="Raça" value={raca} onChange={(e) => setRaca(e.target.value)} required />
+        <input type="text" placeholder="Idade" value={idade} onChange={(e) => setIdade(e.target.value)} required />
+        <textarea placeholder="Descrição do caso" value={descricao} onChange={(e) => setDescricao(e.target.value)} required />
+        <input type="file" name="foto" accept="image/*" onChange={handleFileChange} />
         <button type="submit">Enviar Caso</button>
       </form>
 
       <h1>Casos cadastrados</h1>
       <div className="casos-grid">
-        {casos.map((caso) => {
-          // sempre transforma em array
-          const fotosArray = Array.isArray(caso.foto) ? caso.foto : (caso.foto ? [caso.foto] : []);
-          const primeiraFoto = fotosArray[0];
-          // ajusta URL local se for /uploads/
-          const src = primeiraFoto?.startsWith("http") ? primeiraFoto : `/uploads/${primeiraFoto}`;
-
-          return (
-            <div key={caso.id} className="caso-card">
-              {src && <img src={src} alt={caso.nome} className="caso-foto" />}
-              <div className="caso-info">
-                <h3>{caso.nome}</h3>
-                <p><strong>Raça:</strong> {caso.raca}</p>
-                <p><strong>Idade:</strong> {caso.idade}</p>
-                <p>{caso.descricao}</p>
-                <button onClick={() => deleteCaso(caso.id)} style={{background:"red",color:"white"}}>Delete</button>
-                <button onClick={() => openEditModal(caso)} style={{background:"blue",color:"white",marginLeft:"5px"}}>Editar</button>
-              </div>
+        {casos.map((caso) => (
+          <div key={caso.id} className="caso-card">
+            {caso.foto && <img src={caso.foto} alt={caso.nome} className="caso-foto" />}
+            <div className="caso-info">
+              <h3>{caso.nome}</h3>
+              <p><strong>Raça:</strong> {caso.raca}</p>
+              <p><strong>Idade:</strong> {caso.idade}</p>
+              <p>{caso.descricao}</p>
+              <button onClick={() => deleteCaso(caso.id)} style={{ background: "red", color: "white" }}>Delete</button>
+              <button onClick={() => openEditModal(caso)} style={{ background: "blue", color: "white", marginLeft: "5px" }}>Editar</button>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
 
-      {/* MODAL DE EDIÇÃO */}
       {isEditModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
             <h2>Editar Caso</h2>
             <form onSubmit={(e) => { e.preventDefault(); updateCaso(currentEditCaso.id); }}>
-              <input type="text" value={nome} onChange={e => setNome(e.target.value)} required />
-              <input type="text" value={raca} onChange={e => setRaca(e.target.value)} required />
-              <input type="text" value={idade} onChange={e => setIdade(e.target.value)} required />
-              <textarea value={descricao} onChange={e => setDescricao(e.target.value)} required />
-              <input type="file" accept="image/*" onChange={e => setFoto(e.target.files[0])} />
+              <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
+              <input type="text" value={raca} onChange={(e) => setRaca(e.target.value)} required />
+              <input type="text" value={idade} onChange={(e) => setIdade(e.target.value)} required />
+              <textarea value={descricao} onChange={(e) => setDescricao(e.target.value)} required />
+              <input type="file" accept="image/*" onChange={handleFileChange} />
               <button type="submit">Salvar Alterações</button>
               <button type="button" onClick={() => setEditModalOpen(false)}>Cancelar</button>
             </form>
