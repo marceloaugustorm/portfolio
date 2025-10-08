@@ -175,21 +175,21 @@ export const Caso = () => {
       <h1>Casos cadastrados</h1>
       <div className="casos-grid">
         {casos.map((caso) => {
-          const primeiraFoto = Array.isArray(caso.foto) ? caso.foto[0] : caso.foto;
-          return (
-            <div key={caso.id} className="caso-card">
-              {primeiraFoto && <img src={`${API_URL}/uploads/${primeiraFoto}`} alt={caso.nome} className="caso-foto" />}
-              <div className="caso-info">
-                <h3>{caso.nome}</h3>
-                <p><strong>Raça:</strong> {caso.raca}</p>
-                <p><strong>Idade:</strong> {caso.idade}</p>
-                <p>{caso.descricao}</p>
-                <button onClick={() => deleteCaso(caso.id)} style={{background:"red",color:"white"}}>Delete</button>
-                <button onClick={() => openEditModal(caso)} style={{background:"blue",color:"white",marginLeft:"5px"}}>Editar</button>
-              </div>
-            </div>
-          );
-        })}
+      const primeiraFoto = Array.isArray(caso.foto) && caso.foto.length > 0 ? caso.foto[0] : null;
+      return (
+        <div key={caso.id} className="caso-card">
+          {primeiraFoto && <img src={primeiraFoto} alt={caso.nome} className="caso-foto" />}
+          <div className="caso-info">
+            <h3>{caso.nome}</h3>
+            <p><strong>Raça:</strong> {caso.raca}</p>
+            <p><strong>Idade:</strong> {caso.idade}</p>
+            <p>{caso.descricao}</p>
+            <button onClick={() => deleteCaso(caso.id)} style={{background:"red",color:"white"}}>Delete</button>
+            <button onClick={() => openEditModal(caso)} style={{background:"blue",color:"white",marginLeft:"5px"}}>Editar</button>
+      </div>
+    </div>
+  );
+})}
       </div>
 
       {/* MODAL DE EDIÇÃO */}
