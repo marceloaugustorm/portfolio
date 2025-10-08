@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "./Caso.css";
 
-const API_URL = "http://127.0.0.1:5000";
+const API_URL = "https://back-end-portfolio-frwh.onrender.com";
 
 export const Caso = () => {
   const [email, setEmail] = useState("");
