@@ -41,8 +41,10 @@ export const Caso = () => {
         setAuthenticated(true);
       } else {
         setResultado({ message: data.message });
+        toast.error("Email ou senha incorretos")
       }
     } catch (error) {
+      
       console.log("Erro:", error.message);
     }
   };
@@ -153,12 +155,14 @@ export const Caso = () => {
       const data = await response.json();
       if (response.ok) {
         getdata();
+        toast.success("Editado com sucesso")
         setEditModalOpen(false);
         setFoto(null);
       } else {
         console.error("Erro ao atualizar:", data);
       }
     } catch (error) {
+      toast.error("Falha ao editar")
       console.error("Erro na atualização:", error);
     }
   };
@@ -168,7 +172,6 @@ export const Caso = () => {
     return (
       <div className="wrapper">
         <ToastContainer position="top-right" autoClose={3000} />
-        {resultado && <p>{resultado.message}</p>}
         <form onSubmit={submitLogin}>
           <h1>Login</h1>
           <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
